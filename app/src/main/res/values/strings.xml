@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Assignment</string>
+    <string name="search">search</string>
+    <string name="two">Two Columns</string>
+    <string name="three">Three Columns</string>
+    <string name="four">Four Columns</string>
+</resources>
