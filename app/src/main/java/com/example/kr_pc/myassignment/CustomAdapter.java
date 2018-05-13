@@ -30,8 +30,8 @@ class CustomAdapter extends ArrayAdapter {
 
         Picasso.with(getContext())
                 .load(imageUrlList.get(position))
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.loading_image)
+                .error(R.drawable.error_image)
                 .transform(new CropSquareTransformation())
                 .into(imageView);
 
