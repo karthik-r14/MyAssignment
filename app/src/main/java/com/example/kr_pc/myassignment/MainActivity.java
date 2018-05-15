@@ -1,6 +1,8 @@
 package com.example.kr_pc.myassignment;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,14 +57,24 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                gridView.setVisibility(View.GONE);
-                loadImagesInGrid(searchImageText.getText().toString());
+                if (connectivityAvailable()) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    gridView.setVisibility(View.GONE);
+                    loadImagesInGrid(searchImageText.getText().toString());
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.no_internet_msg, Toast.LENGTH_LONG).show();
+                }
 
             }
         });
 
         actionBar.setCustomView(view);
+    }
+
+    public boolean connectivityAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     private void loadImagesInGrid(String searchString) {
