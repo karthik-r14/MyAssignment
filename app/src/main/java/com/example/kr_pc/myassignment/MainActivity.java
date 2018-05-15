@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadImagesInGrid(String searchString) {
-        int numOfImages = 40;
+        int numOfImages = 1000;
         String JSON_URL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&per_page=" + numOfImages + "&nojsoncallback=1&format=json&tags=" + searchString + "&api_key=2500f26f948508b2ec2144ad835d5508";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                 imageUrlList.add(imageUrl);
                             }
 
-                            adapter = new CustomAdapter(getApplicationContext(), imageUrlList);
+                            adapter = new CustomAdapter(MainActivity.this, imageUrlList);
                             gridView.setAdapter(adapter);
                             gridView.setVisibility(View.VISIBLE);
 
